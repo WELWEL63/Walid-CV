@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walid Ashour | Travel Tech Specialist</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <video autoplay muted loop playsinline id="bg-video">
+  <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+  <style>
+    body {
+      font-family: 'Poppins', 'Cairo', sans-serif;
+      background: linear-gradient(120deg, #222222, #030303);
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: linear-gradient(120deg, #979696, #000000);
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .hero-image img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 5px solid #94d2bd;
+    }
+    /* Background Video */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.5; /* Adjust for visibility behind text */
+}
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700px;
+      margin-bottom: 10px;
+      color: #f8f7f6;
+    }
+    .hero-text h3 {
+      font-size: 1.5rem;
+      color: #f3f1ef;
+   
+    }
+    .badge-icons span {
+      display: inline-block;
+      background: #c95c02;
+      color: #eff3f5;
+      font-size: 1.5rem;
+      padding: 10px 15px;
+      margin: 10px;
+      border-radius: 5px;
+      font-weight: 700;
+    }
+    .section-title {
+      text-align: center;
+      margin: 60px 0 30px;
+      font-size: 3rem;
+      color: #f7f3f0;
+    }
+    .card {
+      background: linear-gradient(120deg, #afadad, #0a0a0a);
+      color: #fff;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #c24f02;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .portfolio-card {
+      background: #fff;
+      color: #c54a03;
+      text-decoration: none;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .portfolio-card:hover {
+      transform: scale(1.05);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .portfolio-card h4, .portfolio-card p {
+      padding: 10px;
+      margin: 0;
+    }
+    .main-nav {
+      background-color: #c24f02;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 2rem;
+    }
+    .main-nav a {
+      color: #f0f3f5;
+      margin: 0 15px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .main-nav a:hover {
+      text-decoration: underline;
+    }
+    /* ===== Contact Form Section ===== */
+.contact-form {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+   font-size: 1.5rem;
+  color: #b93d04;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  direction: rtl; /* Ensures RTL layout by default */
+  text-align: right;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 1.5rem;
+  direction: rtl;
+  font-family: 'Cairo', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  background: #fff;
+  border: 1px solid #b93d04;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button {
+  display: inline-block;
+  background: linear-gradient(135deg, #fc7f0a, #d47800);
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  font-family: 'Cairo', sans-serif;
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, #fc7f0a, #d47800);
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form button i {
+  margin-left: 8px;
+}
+
+/* Flash message style */
+.flash {
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 15px;
+  background: #d1ffd6;
+  color: #065f46;
+  border: 1px solid #10b981;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .contact-form button {
+    font-size: 1rem;
+  }
+}
+
+    footer {
+      background: #001219;
+      text-align: center;
+      padding: 20px;
+      color: #fff;
+      margin-top: 50px;
+    }
+    .arabic {
+      direction: rtl;
+      font-family: 'Cairo', sans-serif;
+      margin-top: 30px;
+    }
+    .whatsapp-logo img {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+
+      
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="hero-section">
+      <div class="hero-image">
+        <img src="{{ url_for('static', filename='walid.jpg') }}" alt="Walid">
+      </div>
+      <div class="hero-text">
+        <h1>Walid Ashour</h1>
+        <h3><i class="fas fa-globe"></i> Software Engineering & Travel Tech Specialist</h3>
+        <p>🎓 BSc (Hons) Software Engineering – Bournemouth University<br>
+          A British-Egyptian travel tech architect with a passion for transforming Egypt’s tourism into fully digital, data-driven experiences.<br>
+          💡 Bridging software & tourism to build powerful digital travel companies.
+        </p>
+        <div class="arabic">
+          🎓 حاصل على بكالوريوس (مع مرتبة الشرف) في هندسة البرمجيات – جامعة بورنموث
+أنا مهندس برمجيات مصري-بريطاني، شغوف بتكنولوجيا السفر، وبشتغل على تحويل السياحة في مصر لتجربة رقمية ذكية ومبهرة.
+
+من شرم الشيخ والغردقة لحد أنظمة حجز الطيران العالمية، عندي خبرة أكتر من 15 سنة بدمج ما بين السياحة الواقعية والبرمجة.
+
+📲 دوري؟ إني أساعد شركات السياحة تتحوّل رقميًا بشكل محترف ومرن، من غير تعقيد:
+
+محركات حجز فورية
+
+أنظمة تسعير ذكية
+
+إدارة رحلات واستكشافات
+
+تكامل كامل مع أنظمة GDS وشركات الطيران
+
+منصات بلغات متعددة وجاهزة للتوسع العالمي
+
+💡 كل نظام ببرمجه بيتفصّل مخصوص ليك —
+من غير قوالب جاهزة، ومن غير نسخ أفكار غيرك.
+أنا بصمّم حلول تعبر عن شخصية شركتك، وتخليها تنافس وتكبر بثقة.
+
+🚀 رؤيتي؟
+رقمنة قطاع السياحة المصري باستخدام أدوات حديثة، مرنة، ومناسبة لثقافتنا.
+لو عندك فكرة، أو شركة عايزة تطور، خلينا نبدأ الرحلة سوا ونحوّل فكرتك لحقيقة رقمية قوية 💻✨
+        </div>
+        <div class="badge-icons">
+          <span><i class="fas fa-code"></i> 100% Hand-Coded</span>
+          <span><i class="fas fa-rocket"></i> You Own It. You Scale It.</span>
+          <span><i class="fas fa-tools"></i> No Templates. No WordPress.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <a href="#services"><i class="fas fa-cogs"></i> Services / خدمات</a>
+    <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio / اعمالي</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact / تواصل</a>
+  </nav>
+
+  <main class="container">
+    <section id="services">
+      <h2 class="section-title">My Services & Consulting | خدمات و استشارات</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <i class="fas fa-laptop-code"></i>
+            <h4>Travel Platform Development</h4>
+            <p>Custom-built B2C/B2B travel systems with real-time booking, multilingual, and admin dashboards.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <i class="fas fa-plane"></i>
+            <h4>Flight Integration GDS</h4>
+            <p>Full GDS (Amadeus/Sabre) and third-party API integration for flights and dynamic travel packages.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <i class="fas fa-map-marked-alt"></i>
+            <h4>Content & Contracting</h4>
+            <p>Tour creation with guides, transport, pricing, and markup systems for FIT & group tours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section id="portfolio">
+      <h2><i class="fas fa-briefcase"></i> My Work & Demo Platforms | اعمالي ومنصاتي</h2>
+      <div class="portfolio-grid">
+        <a href="https://egypt-sunandsea.onrender.com" class="portfolio-card" target="_blank">
+          <img src="{{ url_for('static', filename='frontend.jpg') }}" alt="Frontend">
+          <h4><i class="fas fa-umbrella-beach"></i> Sun & Sea Portal</h4>
+          <p>Live tour booking frontend for clients. منصه الحجوزات السياحية.</p>
+        </a>
+        <a href="https://tripsandtipseg-hens.onrender.com/" class="portfolio-card" target="_blank">
+          <img src="{{ url_for('static', filename='tripsandtips.jpg') }}" alt="Admin">
+          <h4><i class="fas fa-hiking"></i> Trips & Tips Portal</h4>
+          <p>Excursion packages with admin backend. موقع الرحلات و الادارة.</p>
+        </a>
+        <a href="https://resortsandhotelsdemo.onrender.com/" class="portfolio-card" target="_blank">
+          <img src="{{ url_for('static', filename='hotels.jpg') }}" alt="Hotels">
+          <h4><i class="fas fa-hotel"></i> Resorts & Hotel Panel</h4>
+          <p>Contracting & management system for hotel deals. اداره الفنادق و التعاقدات.</p>
+        </a>
+        <a href="https://tripsandtipseg-hens.onrender.com/admin/login" class="portfolio-card" target="_blank">
+          <img src="{{ url_for('static', filename='admin.jpg') }}" alt="Hotels">
+          <h4><i class="fas fa-hotel"></i>  Holidays Panel</h4>
+          <p>Contracting & management system for hotel deals. اداره الفنادق و التعاقدات.</p>
+        </a>
+        <a href="https://egyptdirect-ufoe.onrender.com/" class="portfolio-card" target="_blank">
+          <img src="{{ url_for('static', filename='holidays only.jpg') }}" alt="Hotels">
+          <h4><i class="fas fa-hotel"></i>  Holidays Panel</h4>
+          <p>Contracting & management system for Holidays and tours deals. اداره الاجازات و التعاقدات.</p>
+        </a>
+        <a href="https://egyptholidays.onrender.com/" class="portfolio-card" target="_blank">
+          <img src="{{ url_for('static', filename='holidays+hotels.jpg') }}" alt="Hotels">
+          <h4><i class="fas fa-hotel"></i> Hotels and holidays   Panel</h4>
+          <p>Contracting & management system for holidays & hotels deals. اداره الفنادق والاجازات و التعاقدات.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2><i class="fas fa-envelope-open-text"></i> Contact Me | تواصل معي</h2>
+
+ 
+<p>
+    
+ I'm always happy to connect! Whether you're a travel company, a startup, or an individual looking to build your travel platform, feel free to reach out. Let’s discuss your idea and bring it to life.<p>
+
+  يسعدني دائمًا التواصل معك! سواء كنت شركة سفر، شركة ناشئة، أو فرد يرغب في بناء منصة سفر إلكترونية، لا تتردد في التواصل. دعنا نناقش فكرتك ونحولها إلى واقع.
+<p></p>
+  <strong>
+    
+    📧 Let's Build Together:</strong> Fill in the form below and I’ll get back to you shortly.<br>
+  <strong>📞 Prefer a call?</strong> Just mention it in your message and I’ll arrange a quick chat.<p>
+    <strong>📧 لنبدأ العمل معًا:</strong> املأ النموذج أدناه وسأتواصل معك قريبًا.<br>
+    </p>
+  <strong>📞 تفضل مكالمة؟</strong> فقط اذكر ذلك في رسالتك وسأقوم بترتيب مكالمة سريعة.
+   </p>      
+
+</p>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form action="{{ url_for('submit_contact') }}" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name / الاسم" required />
+        <input type="email" name="email" placeholder="Your Email / البريد الإلكتروني" required />
+        <input type="Mobile" name="Mobile" placeholder="Your Mobile Number /  رقم الهاتف"required />
+        <input type="text" name="subject" placeholder="Subject / الموضوع" required />
+        <textarea name="message" rows="5" placeholder="Your Message / رسالتك" required></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Send Message / إرسال</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Walid Ashour | كل شيء مشفر يدويًا. أنت المالك للمنصه. أنت المتحكم. Coded for full ownership and flexibility.</p>
+  </footer>
+</body>
+</html>
